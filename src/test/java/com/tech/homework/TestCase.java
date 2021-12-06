@@ -64,7 +64,7 @@ public class TestCase {
 
         List<Integer> valuesSorted =  values.stream().sorted().collect(Collectors.toList());
         pool.setPoolValues(valuesSorted);
-        pool.setPercentile(100);
+        pool.setPercentile(100.0);
         int quantile = 0;
 
         if (pool.getPercentile()==0)

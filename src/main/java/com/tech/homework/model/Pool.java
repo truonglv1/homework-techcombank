@@ -1,17 +1,21 @@
 package com.tech.homework.model;
 
+import javax.validation.constraints.NotNull;
+
 import java.util.List;
 
 public class Pool {
-    private int poolId;
-    private List<Integer> poolValues;
-    private double percentile;
+    @NotNull
+    private Integer poolId;
 
-    public int getPoolId() {
+    private List<Integer> poolValues;
+    private Double percentile;
+
+    public Integer getPoolId() {
         return poolId;
     }
 
-    public void setPoolId(int poolId) {
+    public void setPoolId(Integer poolId) {
         this.poolId = poolId;
     }
 
@@ -23,11 +27,11 @@ public class Pool {
         this.poolValues = poolValues;
     }
 
-    public double getPercentile() {
+    public Double getPercentile() {
         return percentile;
     }
 
-    public void setPercentile(double percentile) {
+    public void setPercentile(Double percentile) {
         this.percentile = percentile;
     }
 

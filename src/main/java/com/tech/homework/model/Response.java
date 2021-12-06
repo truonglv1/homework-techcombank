@@ -12,6 +12,9 @@ public class Response {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer total;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String error;
+
     public String getStatus() {
         return status;
     }
@@ -34,5 +37,13 @@ public class Response {
 
     public void setTotal(Integer total) {
         this.total = total;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }

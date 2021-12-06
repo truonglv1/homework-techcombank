@@ -24,7 +24,7 @@ public class PoolCacheManager {
         loader = new CacheLoader<Integer, List<Integer>>() {
             @Override
             public List<Integer> load(Integer key) {
-                return null;
+                return getPoolFromFile(key);
             }
         };
 
@@ -40,7 +40,7 @@ public class PoolCacheManager {
         return cache;
     }
 
-    public void addPool(Pool pool){
+    public synchronized void addPool(Pool pool){
         cache.put(pool.getPoolId(), pool.getPoolValues());
         writeToFile();
     }
@@ -53,6 +53,7 @@ public class PoolCacheManager {
         }
         return null;
     }
+
     public void writeToFile(){
         File file = new File(outputFile);
         BufferedWriter bf = null;
@@ -75,7 +76,7 @@ public class PoolCacheManager {
         }
     }
 
-    public Map<Integer, List<Integer>> readFromFile(){
+    private Map<Integer, List<Integer>> readFromFile(){
         Map<Integer, List<Integer>> pool = new HashMap<>();
         BufferedReader br = null;
         try{
@@ -105,5 +106,13 @@ public class PoolCacheManager {
             }
         }
         return pool;
+    }
+
+    private List<Integer> getPoolFromFile(Integer poolId) {
+
+        Map<Integer, List<Integer>> pools = new HashMap<Integer, List<Integer>>();
+        pools = readFromFile();
+
+        return pools.get(poolId);
     }
 }
